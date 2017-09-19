@@ -4,16 +4,20 @@
   "main": "app/index.js",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-jest": "^21.0.2",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "clean-webpack-plugin": "^0.1.16",
     "css-loader": "^0.28.7",
     "enzyme": "^2.9.1",
     "extract-text-webpack-plugin": "^3.0.0",
+    "flow-bin": "^0.54.1",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^21.1.0",
     "react-test-renderer": "^15.6.1",
@@ -31,6 +35,8 @@
     "test:rebuild": "jest -u --coverage"
   },
   "dependencies": {
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-es2017": "^6.24.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   }

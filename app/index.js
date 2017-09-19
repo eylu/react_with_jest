@@ -1,3 +1,5 @@
+/* @flow */
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -7,11 +9,13 @@ import ReactDOM from 'react-dom';
 // components
 import Link from './components/link';
 import Check from './components/checkBoxWithLabel';
+import FlowTest from './components/flowTest';
 
 ReactDOM.render(
     <div>
       <Link page="http://www.baidu.com">Link</Link>
       <Check labelOn="On" labelOff="Off" />
+      <FlowTest foo="string" />
     </div>,
     document.getElementById('root')
 );
