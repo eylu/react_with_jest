@@ -7,6 +7,7 @@
 # Ignore bundler config.
 /.bundle
 
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -19,28 +20,21 @@
 
 /node_modules
 /yarn-error.log
+/config/database.yml
+/**/*/.tern-port
+/public/packs
+/public/system
+/public/assets
+/public/apidoc
+/apidoc
+/coverage
 
 .byebug_history
-/public/packs
-
-/config/database.yml
-
-/**/*/.tern-port
-
 .idea
 gstore.iml
-
-/public/system
-/coverage
 npm-debug.log
-/public/assets
-
 .DS_Store
-
-/public/apidoc
 *.rdb
-
-/apidoc
 .ruby-version
-
 yarn.lock
+
