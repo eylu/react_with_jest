@@ -10,14 +10,16 @@ import ReactDOM from 'react-dom';
 import Link from './components/link';
 import Check from './components/checkBoxWithLabel';
 
-import FlowTest from './components/flowTest';
+import FlowTestProps from './components/flowTestProps';
+import FlowTestButton from './components/flowTestButton';
 
 
 ReactDOM.render(
     <div>
       <Link page="http://www.baidu.com">Link</Link>
       <Check labelOn="On" labelOff="Off" />
-      <FlowTest foo={13} />
+      <FlowTestProps foo={13} />
+      <FlowTestButton count={22} />
     </div>,
     document.getElementById('root')
 );
