@@ -7,7 +7,7 @@ var common = require("./webpack.common.js");
 module.exports = merge(common, {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new UglifyJSPlugin()
+    // new UglifyJSPlugin()
   ]
 });
 
