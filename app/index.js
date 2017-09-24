@@ -2,30 +2,63 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
+import createSagaMiddleware from "redux-saga";
+import { hashHistory, Router } from "react-router";
+import { syncHistoryWithStore, routerMiddleware, push } from "react-router-redux";
+import logger from "redux-logger";
+import setAuthorizationToken from "./utils/setAuthorizationToken";
 
 // styles
 // import "./assets/stylesheets/core.css";
 
-// components
-import Link from './components/link';
-import Check from './components/checkBoxWithLabel';
+import rootReducer from "./reducers/rootReducer";
+/**
+ * import configs
+ */
+import routes from "./config/router";
+
+import rootSaga from "./sagas/rootSaga";
+
+/**
+ * axios configs
+ */
+import setDefaultContentType from "./utils/setDefaultContentType";
+import {updateCurrentUser} from "./actions/auth";
 
 
-// import MyComponent from './components/flowTest';
-// import MyComponent from './components/my1.js';
-// import MyComponent from './components/my2.js';
-// import MyComponent from './components/my3.js';
-// import MyComponent from './components/my4.js';
-import FlowTestProps from './components/flowTestProps';
-import FlowTestButton from './components/flowTestButton';
+const reduxRouterMiddleware = routerMiddleware(hashHistory);
+const sagaMiddleware = createSagaMiddleware();
+const middlewares = [sagaMiddleware,reduxRouterMiddleware];
+if (process.env.NODE_ENV === `development`) {
+  middlewares.push(logger);
+}
 
+const store = createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(...middlewares),
+  )
+);
+
+sagaMiddleware.run(rootSaga);
+setDefaultContentType();
+const token = localStorage.getItem("token");
+const userId = localStorage.getItem("userId");
+if (token && userId) {
+    setAuthorizationToken(token);
+    store.dispatch(updateCurrentUser(userId));   
+  } else {
+    localStorage.removeItem("token");
+    store.dispatch(push("/login"))
+}
+
+const history = syncHistoryWithStore(hashHistory, store);
 
 ReactDOM.render(
-    <div>
-      <Link page="http://www.baidu.com">Link</Link>
-      <Check labelOn="On" labelOff="Off" />
-      <FlowTestProps foo={13} />
-      <FlowTestButton count={22} />
-    </div>,
+    <Provider store={store}>
+      <Router history={history} routes={routes} />
+    </Provider>,
     document.getElementById('root')
 );

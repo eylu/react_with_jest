@@ -9,7 +9,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: [path.resolve(__dirname, "app", "index.js")],
+    app: ["babel-polyfill", path.resolve(__dirname, "app", "index.js")],
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -43,6 +43,11 @@ module.exports = {
       template: path.resolve(__dirname, "app", "index.tmpl.html"),
     }),
     new ManifestPlugin(),
-    new ExtractTextPlugin('[name]-[hash].css')
+    new ExtractTextPlugin('[name]-[hash].css'),
+    new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify("development"),
+            },
+        }),
   ]
 };
