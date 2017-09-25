@@ -1,18 +1,17 @@
+/* @flow */
 import React from 'react';
 
-const TextFieldGroup = (
-  { 
-    value, 
-    error, 
-    type, 
-    name, 
-    label, 
-    id,
-    placeholder, 
-    onChange, 
-    onBlur, 
-    onKeyUp 
-  }) => {
+type Props = {
+  value?:string, 
+  error?:string, 
+  type:string, 
+  name:string,
+  label:string,
+  id?:string,
+  placeholder?:string, 
+};
+
+const TextFieldGroup = ({value,error,type,name,label,id,placeholder,onChange,onBlur,onKeyUp}:Props) => {
   return (
       <div>
         <label htmlFor={id}>{label}</label>
