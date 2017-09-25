@@ -35,7 +35,7 @@ class Login extends React.Component {
     return (
       <div>
         <TextField 
-          value={formData.name} 
+          value={formData.username} 
           onChange={this.onChange}
           name="username"
           type="text" 
@@ -43,7 +43,7 @@ class Login extends React.Component {
           label="Name"
         />
         <TextField 
-          value={formData.pass} 
+          value={formData.password} 
           onChange={this.onChange}
           type="password" 
           name="password"

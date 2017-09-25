@@ -9,6 +9,9 @@ type Props = {
   label:string,
   id?:string,
   placeholder?:string, 
+  onChange:Function,
+  onBlur:Function,
+  onKeyUp:Function,
 };
 
 const TextFieldGroup = ({value,error,type,name,label,id,placeholder,onChange,onBlur,onKeyUp}:Props) => {
