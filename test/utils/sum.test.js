@@ -1,7 +1,6 @@
 import sum from '../../app/utils/sum';
 
 function initializeCityDatabase(){
-  console.log('this is init cities;');
   return ['Beijing', 'Nanjing'];
 }
 

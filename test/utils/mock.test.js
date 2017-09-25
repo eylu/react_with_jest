@@ -6,7 +6,7 @@ describe('Utils:mock', () => {
     const mockCallback = jest.fn();
     forEach(['one', 'two'], mockCallback);
 
-    console.log(mockCallback.mock.instances);
+    // console.log(mockCallback.mock.instances);
 
     // The mock function is called twice
     expect(mockCallback.mock.calls.length).toBe(2);

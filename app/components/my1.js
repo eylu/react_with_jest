@@ -2,7 +2,11 @@
 
 import * as React from 'react';
 
-export default class MyComponent extends React.Component<{}, { count: number }> {
+export default class MyComponent extends React.Component<{fooHello: string}, { count: number }> {
+
+  static defaultProps = {
+    fooHello: 'abc'
+  };
 
   state = {
     count: 0
@@ -20,6 +24,7 @@ export default class MyComponent extends React.Component<{}, { count: number }> 
   render() {
     return (
       <div>
+        <p>Foo: {this.props.fooHello}</p>
         <p>Count: {this.state.count}</p>
         <button onClick={this.handleClick}>
           Increment
