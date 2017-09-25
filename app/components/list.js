@@ -1,10 +1,17 @@
 /* @flow */
 import * as React from 'react';
 import { connect } from "react-redux";
-import TextField from "./shared/textfield" 
+import TextField from "./shared/textfield"
 import {delCurrentUser} from "../actions/auth"
 
-class List extends React.Component {
+type Props = {
+  auth: {
+    id: number
+  },
+  delCurrentUser: Function
+};
+
+class List extends React.Component<Props> {
 
   handleClick = (e) => {
     const {id} = this.props.auth;

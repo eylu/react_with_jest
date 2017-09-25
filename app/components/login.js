@@ -1,11 +1,22 @@
 /* @flow */
 import * as React from 'react';
 import { connect } from "react-redux";
-import TextField from "./shared/textfield" 
-import {setCurrentUser} from "../actions/auth"
+import TextField from "./shared/textfield";
+import {setCurrentUser} from "../actions/auth";
 
-class Login extends React.Component {
-  
+type Props = {
+  setCurrentUser: Function
+};
+
+type State = {
+  formData: {
+    username: string,
+    password: string
+  }
+};
+
+class Login extends React.Component<Props, State> {
+
   state = {
     formData:{
       username:"",
@@ -34,21 +45,21 @@ class Login extends React.Component {
     const {formData} = this.state;
     return (
       <div>
-        <TextField 
-          value={formData.username} 
+        <TextField
+          value={formData.username}
           onChange={this.onChange}
           name="username"
-          type="text" 
-          placeholder="Enter your name" 
+          type="text"
+          placeholder="Enter your name"
           label="Name"
         />
-        <TextField 
-          value={formData.password} 
+        <TextField
+          value={formData.password}
           onChange={this.onChange}
-          type="password" 
+          type="password"
           name="password"
-          placeholder="Enter your password" 
-          label="Password" 
+          placeholder="Enter your password"
+          label="Password"
         />
         <button onClick={this.handleClick}>
           Login
