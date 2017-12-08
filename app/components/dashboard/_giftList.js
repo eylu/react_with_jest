@@ -10,7 +10,7 @@ type Props = {
 };
 
 type State = {
-  beers: Array<string>,
+  beers: Array<{id: number, name: string}>,
   title: string,
 };
 
@@ -25,19 +25,28 @@ export default class GiftList extends Component<Props, State> {
     };
   }
 
-  addItem(name: string) {
+  componentDidMount() {
     this.setState({
-      beers: [].concat(this.state.beers).concat([name])
+      beers: this.props.data,
     });
   }
+
+  addItem = (name: string) => {
+    this.setState({
+      beers: [].concat(this.state.beers).concat([{
+        id: Date.now(),
+        name: name
+      }])
+    });
+  };
 
   render() {
     return (
       <div>
         <h4>{this.props.title} {this.state.title}</h4>
-        <InputArea onSubmit={() => {this.addItem("")}}/>
+        <InputArea onSubmit={this.addItem}/>
         <ul>
-          {this.props.data.map((item, i) => {
+          {this.state.beers.map((item, i) => {
             return (
               <li key={i}>
                 {item.id} - {item.name}
